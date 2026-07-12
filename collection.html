@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>All Products — Ekaika Living</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ivory: #f7f4ef;
+      --linen: #ede8df;
+      --linen-dark: #d6cfc2;
+      --charcoal: #3a3632;
+      --charcoal-light: #6b6560;
+      --charcoal-xlight: #9c9590;
+      --accent: #8b7355;
+      --white: #fdfcfa;
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans: 'Inter', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--ivory);
+      color: var(--charcoal);
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 14px;
+      line-height: 1.7;
+      letter-spacing: 0.02em;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+    /* ── HEADER ── */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(247,244,239,0.94);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--linen-dark);
+    }
+
+    .nav-inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 48px;
+      height: 68px;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+    }
+
+    .nav-left { display: flex; gap: 36px; align-items: center; }
+
+    .nav-left a, .nav-right a {
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--charcoal);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-left a:hover, .nav-right a:hover { color: var(--accent); }
+    .nav-left a.active { color: var(--accent); border-bottom: 1px solid var(--accent); padding-bottom: 1px; }
+
+    .logo-link {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 3px; text-decoration: none;
+    }
+
+    .logo-wordmark {
+      font-family: var(--sans); font-size: 13px; font-weight: 500;
+      letter-spacing: 0.28em; text-transform: uppercase; color: var(--charcoal); line-height: 1;
+    }
+
+    .logo-sub {
+      font-family: var(--sans); font-size: 7.5px; font-weight: 300;
+      letter-spacing: 0.38em; text-transform: uppercase; color: var(--charcoal-xlight); line-height: 1;
+    }
+
+    .nav-right { display: flex; gap: 28px; align-items: center; justify-content: flex-end; }
+
+    .nav-icon {
+      display: flex; align-items: center; gap: 6px; cursor: pointer;
+      font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--charcoal); text-decoration: none;
+    }
+
+    /* ── COLLECTION HEADER ── */
+    .collection-header {
+      padding-top: 68px;
+      border-bottom: 1px solid var(--linen-dark);
+      background: var(--white);
+    }
+
+    .collection-header-inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 48px 48px 0;
+    }
+
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--charcoal-xlight);
+      margin-bottom: 24px;
+    }
+
+    .breadcrumb a { color: var(--charcoal-xlight); text-decoration: none; transition: color 0.2s; }
+    .breadcrumb a:hover { color: var(--accent); }
+    .breadcrumb span { opacity: 0.4; }
+
+    .collection-title-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 40px;
+    }
+
+    .collection-title {
+      font-family: var(--serif);
+      font-size: clamp(40px, 4vw, 64px);
+      font-weight: 300;
+      line-height: 1.05;
+      color: var(--charcoal);
+    }
+
+    .collection-title em { font-style: italic; color: var(--accent); }
+
+    .collection-meta {
+      text-align: right;
+    }
+
+    .product-count {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--charcoal-xlight);
+      margin-bottom: 8px;
+    }
+
+    .sort-select {
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      color: var(--charcoal);
+      background: transparent;
+      border: 1px solid var(--linen-dark);
+      padding: 8px 28px 8px 12px;
+      cursor: pointer;
+      outline: none;
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%239c9590' stroke-width='1.2' fill='none'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+    }
+
+    /* ── FILTER TABS ── */
+    .filter-bar {
+      display: flex;
+      gap: 0;
+      border-top: 1px solid var(--linen-dark);
+    }
+
+    .filter-tab {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 16px 28px;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--charcoal-xlight);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+      user-select: none;
+    }
+
+    .filter-tab:hover { color: var(--charcoal); }
+
+    .filter-tab.active {
+      color: var(--charcoal);
+      border-bottom-color: var(--charcoal);
+    }
+
+    .filter-tab .tab-count {
+      font-size: 9px;
+      color: var(--charcoal-xlight);
+      background: var(--linen);
+      padding: 2px 7px;
+      border-radius: 10px;
+    }
+
+    .filter-tab.active .tab-count {
+      background: var(--charcoal);
+      color: var(--ivory);
+    }
+
+    /* ── MAIN LAYOUT ── */
+    .catalog-main {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 48px 48px 120px;
+    }
+
+    /* ── PRODUCT GRID ── */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+
+    /* ── PRODUCT CARD ── */
+    .product-card {
+      background: var(--white);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-card[data-category="bedsheet"] { --card-accent: #c9b98a; }
+    .product-card[data-category="quilt"]    { --card-accent: #8fb4a0; }
+    .product-card[data-category="cushion"]  { --card-accent: #d9a8a0; }
+
+    .product-card.hidden { display: none; }
+
+    .product-image {
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .product-image img {
+      transition: transform 0.55s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+
+    .product-card:hover .product-image img { transform: scale(1.04); }
+
+    /* Badges */
+    .badge {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      font-size: 8px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      z-index: 2;
+    }
+
+    .badge-new { background: var(--charcoal); color: var(--ivory); }
+    .badge-quilt { background: var(--accent); color: var(--ivory); }
+
+    /* Hover CTA */
+    .card-cta {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 14px 20px;
+      background: rgba(247,244,239,0.96);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 0.25s, transform 0.25s;
+    }
+
+    .product-card:hover .card-cta {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .card-cta-text {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--charcoal);
+    }
+
+    .card-cta-icon {
+      width: 32px;
+      height: 32px;
+      border: 1px solid var(--charcoal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+
+    .card-cta-icon:hover { background: var(--charcoal); }
+    .card-cta-icon:hover svg { stroke: var(--ivory); }
+
+    /* Card info */
+    .product-info {
+      padding: 18px 20px 24px;
+      border-top: 1px solid var(--linen);
+    }
+
+    .product-category-tag {
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .product-name {
+      font-family: var(--serif);
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 1.25;
+      color: var(--charcoal);
+      margin-bottom: 4px;
+    }
+
+    .product-variant {
+      font-size: 11px;
+      color: var(--charcoal-xlight);
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+    }
+
+    .product-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .product-price {
+      font-family: var(--serif);
+      font-size: 19px;
+      font-weight: 400;
+      color: var(--charcoal);
+    }
+
+    .product-swatches {
+      display: flex;
+      gap: 5px;
+    }
+
+    .swatch {
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      border: 1px solid rgba(58,54,50,0.12);
+    }
+
+    /* ── EMPTY STATE ── */
+    .empty-state {
+      display: none;
+      text-align: center;
+      padding: 80px 0;
+      grid-column: 1/-1;
+    }
+
+    .empty-state.visible { display: block; }
+
+    .empty-state p {
+      font-family: var(--serif);
+      font-size: 28px;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--charcoal-xlight);
+    }
+
+    /* ── RESULTS BAR ── */
+    .results-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 32px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--linen-dark);
+    }
+
+    .results-text {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: var(--charcoal-xlight);
+    }
+
+    .results-text strong { color: var(--charcoal); font-weight: 400; }
+
+    /* ── EDITORIAL BREAK ── */
+    .editorial-break {
+      grid-column: 1 / -1;
+      background: var(--linen);
+      padding: 56px 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      margin: 2px 0;
+    }
+
+    .editorial-break-text {}
+
+    .editorial-break-eyebrow {
+      font-size: 9px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .editorial-break-title {
+      font-family: var(--serif);
+      font-size: 32px;
+      font-weight: 300;
+      color: var(--charcoal);
+      line-height: 1.2;
+    }
+
+    .editorial-break-title em { font-style: italic; color: var(--accent); }
+
+    .editorial-break-body {
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 1.85;
+      color: var(--charcoal-light);
+      max-width: 440px;
+      margin-top: 12px;
+    }
+
+    .btn-ghost {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--charcoal);
+      text-decoration: none;
+      border: 1px solid var(--charcoal);
+      padding: 13px 28px;
+      transition: all 0.25s;
+      white-space: nowrap;
+      align-self: center;
+      flex-shrink: 0;
+    }
+
+    .btn-ghost:hover { background: var(--charcoal); color: var(--ivory); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--charcoal);
+      padding: 64px 0 0;
+    }
+
+    .footer-inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 48px 60px;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 60px;
+    }
+
+    .footer-logo-mark { margin-bottom: 14px; }
+
+    .footer-logo-wordmark {
+      font-family: var(--sans); font-size: 13px; font-weight: 500;
+      letter-spacing: 0.3em; text-transform: uppercase;
+      color: rgba(247,244,239,0.85); margin-bottom: 3px;
+    }
+
+    .footer-logo-sub {
+      font-size: 8px; letter-spacing: 0.38em; text-transform: uppercase;
+      color: rgba(247,244,239,0.3); margin-bottom: 20px;
+    }
+
+    .footer-tagline {
+      font-family: var(--serif); font-size: 14px; font-style: italic;
+      color: rgba(247,244,239,0.45); line-height: 1.7;
+      margin-bottom: 24px; max-width: 240px;
+    }
+
+    .social-row { display: flex; gap: 18px; }
+
+    .social-link {
+      font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: rgba(247,244,239,0.35); text-decoration: none; transition: color 0.2s;
+    }
+
+    .social-link:hover { color: rgba(247,244,239,0.8); }
+
+    .footer-col-title {
+      font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: rgba(247,244,239,0.35); margin-bottom: 18px;
+    }
+
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+
+    .footer-links a {
+      font-size: 12px; font-weight: 300; color: rgba(247,244,239,0.55);
+      text-decoration: none; transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: rgba(247,244,239,0.9); }
+
+    .footer-bottom {
+      max-width: 1440px; margin: 0 auto; padding: 22px 48px;
+      border-top: 1px solid rgba(247,244,239,0.08);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+
+    .footer-copy { font-size: 10px; letter-spacing: 0.06em; color: rgba(247,244,239,0.26); }
+
+    .footer-legal { display: flex; gap: 20px; }
+
+    .footer-legal a {
+      font-size: 10px; color: rgba(247,244,239,0.26); text-decoration: none; transition: color 0.2s;
+    }
+
+    .footer-legal a:hover { color: rgba(247,244,239,0.55); }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="nav-inner">
+      <nav class="nav-left">
+        <a href="index.html">Home</a>
+        <a href="collection.html" class="active">All Products</a>
+        <a href="collection.html">Quilts</a>
+        <a href="collection.html">Cushions</a>
+      </nav>
+
+      <a href="index.html" class="logo-link">
+        <svg width="28" height="36" viewBox="0 0 56 72" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom:2px;">
+          <path d="M28 28 C28 28 14 22 13 10 C12 2 19 0 24 4 C26 5.5 27 8 28 10 C29 8 30 5.5 32 4 C37 0 44 2 43 10 C42 22 28 28 28 28Z" fill="#3a3632"/>
+          <line x1="28" y1="28" x2="19" y2="4"   stroke="#f7f4ef" stroke-width="0.7" opacity="0.5"/>
+          <line x1="28" y1="28" x2="21" y2="2.5"  stroke="#f7f4ef" stroke-width="0.7" opacity="0.5"/>
+          <line x1="28" y1="28" x2="24" y2="1.5"  stroke="#f7f4ef" stroke-width="0.7" opacity="0.5"/>
+          <line x1="28" y1="28" x2="28" y2="1"    stroke="#f7f4ef" stroke-width="0.7" opacity="0.5"/>
+          <line x1="28" y1="28" x2="32" y2="1.5"  stroke="#f7f4ef" stroke-width="0.7" opacity="0.5"/>
+          <line x1="28" y1="28" x2="35" y2="2.5"  stroke="#f7f4ef" stroke-width="0.7" opacity="0.5"/>
+          <line x1="28" y1="28" x2="37" y2="4"    stroke="#f7f4ef" stroke-width="0.7" opacity="0.5"/>
+          <line x1="28" y1="28" x2="28" y2="68" stroke="#3a3632" stroke-width="1.2"/>
+          <path d="M28 44 C22 40 10 42 8 50 C16 52 26 48 28 44Z" fill="#3a3632"/>
+          <path d="M28 44 C34 40 46 42 48 50 C40 52 30 48 28 44Z" fill="#3a3632"/>
+        </svg>
+        <span class="logo-wordmark">Ekaika</span>
+        <span class="logo-sub">Living</span>
+      </a>
+
+      <div class="nav-right">
+        <a href="#" class="nav-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          Search
+        </a>
+        <a href="#" class="nav-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          Saved
+        </a>
+        <a href="#" class="nav-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          Bag (0)
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- COLLECTION HEADER -->
+  <div class="collection-header">
+    <div class="collection-header-inner">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span>/</span>
+        <span>All Products</span>
+      </div>
+      <div class="collection-title-row">
+        <h1 class="collection-title">The <em>Collection</em></h1>
+        <div class="collection-meta">
+          <p class="product-count" id="product-count">12 products</p>
+          <select class="sort-select" id="sort-select" onchange="handleSort(this.value)">
+            <option value="featured">Sort: Featured</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+            <option value="new">Newest First</option>
+          </select>
+        </div>
+      </div>
+      <div class="filter-bar">
+        <div class="filter-tab active" data-filter="all" onclick="filterProducts('all')">
+          All <span class="tab-count">12</span>
+        </div>
+        <div class="filter-tab" data-filter="bedsheet" onclick="filterProducts('bedsheet')">
+          Bedsheets <span class="tab-count">5</span>
+        </div>
+        <div class="filter-tab" data-filter="quilt" onclick="filterProducts('quilt')">
+          Quilted Bedcovers <span class="tab-count">1</span>
+        </div>
+        <div class="filter-tab" data-filter="cushion" onclick="filterProducts('cushion')">
+          Cushion Covers <span class="tab-count">6</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CATALOG MAIN -->
+  <main class="catalog-main">
+    <div class="results-bar">
+      <p class="results-text"><strong id="results-count">12</strong> products</p>
+    </div>
+
+    <div class="product-grid" id="product-grid">
+
+      <!-- BEDSHEETS -->
+
+      <!-- 1. Ivory Noor Buta -->
+      <div class="product-card" data-category="bedsheet" data-price="5200" data-new="false">
+        <div class="product-image">
+          <img src="bs-Ivory gold Noor Buta/Pic1.png" alt="Ivory Noor Buta Bedsheet" />
+          <div class="card-cta">
+            <span class="card-cta-text">Add to Bag</span>
+            <div class="card-cta-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3a3632" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            </div>
+          </div>
+        </div>
+        <div class="product-info">
+          <p class="product-category-tag">Bedsheet</p>
+          <p class="product-name">Ivory Noor Buta</p>
+          <p class="product-variant">King · Percale weave · Incl. 2 pillow covers</p>
+          <div class="product-bottom">
+            <p class="product-price">₹ 5,200</p>
+            <div class="product-swatches">
+              <div class="swatch" style="background:#e8e2d6;" title="Ivory"></div>
+              <div class="swatch" style="background:#c9b98a;" title="Gold"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Pale Pink Jaal -->
+      <div class="product-card" data-category="bedsheet" data-price="4800" data-new="false">
+        <div class="product-image">
+          <img src="bs-PalepinkblockPrint/Pic1.png" alt="Pale Pink Jaal Bedsheet" />
+          <div class="card-cta">
+            <span class="card-cta-text">Add to Bag</span>
+            <div class="card-cta-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3a3632" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            </div>
+          </div>
+        </div>
+        <div class="product-info">
+          <p class="product-category-tag">Bedsheet</p>
+          <p class="product-name">Pale Pink Jaal</p>
+          <p class="product-variant">King / Queen · Incl. 2 pillow covers</p>
+          <div class="product-bottom">
+            <p class="product-price">₹ 4,800</p>
+            <div class="product-swatches">
+              <div class="swatch" style="background:#e0b8b0;" title="Pale Rose"></div>
+              <div class="swatch" style="background:#e8e2d6;" title="Ivory"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Multicolor Nargis Buta -->
+      <div class="product-card" data-category="bedsheet" data-price="5500" data-new="true">
+        <div class="product-image">
+          <span class="badge badge-new">New</span>
+          <img src="bs-Multicolor Nargis Buta/pic1.png" alt="Multicolor Nargis Buta Bedsheet" />
+          <div class="card-cta">
+            <span class="card-cta-text">Add to Bag</span>
+            <div class="card-cta-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3a3632" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            </div>
+          </div>
+        </div>
+        <div class="product-info">
+          <p class="product-category-tag">Bedsheet</p>
+          <p class="product-name">Nargis Buta</p>
+          <p class="product-variant">King · Multicolor · Incl. 2 pillow covers</p>
+          <div class="product-bottom">
+            <p class="product-price">₹ 5,500</p>
+            <div class="product-swatches">
+              <div class="swatch" style="background:#87aab8;" title="Blue"></div>
+              <div class="swatch" style="background:#c4785a;" title="Rust"></div>
+              <div class="swatch" style="background:#e8e2d6;" title="Ivory"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- EDITORIAL BREAK — between bedsheets and quilt -->
+      <div class="editorial-break" id="cushion-break">
+        <div class="editorial-break-text">
+          <p class="editorial-break-eyebrow">Hand block-printed</p>
+          <h3 class="editorial-break-title">Each piece carries<br/>the mark of <em>a hand</em></h3>
+          <p class="editorial-break-body">
+            No two prints are identical. The subtle variations in dye absorption,
+            the slight irregularity of repeat — these are not imperfections.
+            They are the signature of craft.
+          </p>
+        </div>
+        <a href="ekaika-living.html#craft" class="btn-ghost">Read the Craft Story</a>
+      </div>
+
+      <!-- 4. Ivory Chinaar Buta -->
+      <div class="product-card" data-category="bedsheet" data-price="4800" data-new="false">
+        <div class="product-image">
+          <img src="bs-Ivory Chinaar Buta -Percale weave/Pic1.png" alt="Ivory Chinaar Buta Bedsheet" />
+          <div class="card-cta">
+            <span class="card-cta-text">Add to Bag</span>
+            <div class="card-cta-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3a3632" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            </div>
+          </div>
+        </div>
+        <div class="product-info">
+          <p class="product-category-tag">Bedsheet</p>
+          <p class="product-name">Ivory Chinaar Buta</p>
+          <p class="product-variant">King · Percale weave · Incl. 2 pillow covers</p>
+          <div class="product-bottom">
+            <p class="product-price">₹ 4,800</p>
+            <div class="product-swatches">
+              <div class="swatch" style="background:#e8e2d6;" title="Ivory"></div>
+              <div class="swatch" style="background:#8fb4a0;" title="Green"></div>
+              <div class="swatch" style="background:#c4785a;" title="Rust"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. White Maroon Jaal -->
+      <div class="product-card" data-category="bedsheet" data-price="4600" data-new="false">
+        <div class="product-image">
+          <img src="bs-White-Maroon-jaal/pic1.png" alt="White Maroon Paisley Jaal Bedsheet" />
+          <div class="card-cta">
+            <span class="card-cta-text">Add to Bag</span>
+            <div class="card-cta-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3a3632" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            </div>
+          </div>
+        </div>
+        <div class="product-info">
+          <p class="product-category-tag">Bedsheet</p>
+          <p class="product-name">Maroon Paisley Jaal</p>
+          <p class="product-variant">King / Queen · Incl. 2 pillow covers</p>
+          <div class="product-bottom">
+            <p class="product-price">₹ 4,600</p>
+            <div class="product-swatches">
+              <div class="swatch" style="background:#a03050;" title="Maroon"></div>
+              <div class="swatch" style="background:#e8e2d6;" title="White"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- QUILTED BEDCOVERS -->
+
+      <!-- 6. Quilted Reversible -->
+      <div class="product-card" data-category="quilt" data-price="8400" data-new="true">
+        <div class="product-image">
+          <span class="badge badge-quilt">Quilt</span>
+          <img src="bs-Quited reversible/pic1.png" alt="Nargis Jaal Quilted Reversible Bedcover" />
+          <div class="card-cta">
+            <span class="card-cta-text">Add to Bag</span>
+            <div class="card-cta-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3a3632" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            </div>
+          </div>
+        </div>
+        <div class="product-info">
+          <p class="product-category-tag">Quilted Bedcover</p>
+          <p class="product-name">Nargis Jaal Quilt</p>
+          <p class="product-variant">Double · Reversible · Kantha-style quilting</p>
+          <div class="product-bottom">
+            <p class="product-price">₹ 8,400</p>
+            <div class="product-swatches">
+              <div class="swatch" style="background:#5ea898;" title="Teal"></div>
+              <div class="swatch" style="background:#c07880;" title="Pink"></div>
+              <div class="swatch" style="background:#e8e2d6;" title="Ivory"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CUSHION COVERS -->
+
+      <!-- 7. Mint Magenta Buti Bel -->
+      <div class="product-card" data-category="cushion" data-price="1600" data-new="false">
+        <div class="product-image">
+          <img src="cc-mintMagentaButiBel/Pic-1.png" alt="Mint Magenta Buti Bel Cushion Cover" />
+          <div class="card-cta">
+            <span class="card-cta-text">Add to Bag</span>
+            <div class="card-cta-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3a3632" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            </div>
+          </div>
+        </div>
+        <div class="product-info">
+          <p class="product-category-tag">Cushion Cover</p>
+          <p class="product-name">Mint Buti Bel</p>
+          <p class="product-variant">Set of 2 · 16×16 in · Zip closure</p>
+          <div class="product-bottom">
+            <p class="product-price">₹ 1,600</p>
+            <div class="product-swatches">
+              <div class="swatch" style="background:#8ecfb8;" title="Mint"></div>
+              <div class="swatch" style="background:#e07890;" title="Magenta"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8. Cyan Pink Small Flowers -->
+      <div class="product-card" data-category="cushion" data-price="1600" data-new="true">
+        <div class="product-image">
+          <span class="badge badge-new">New</span>
+          <img src="cc-cyan-pinkSmallFlowers/Pic1.png" alt="Cyan Pink Nargis Cushion Cover" />
+          <div class="card-cta">
+            <span class="card-cta-text">Add to Bag</span>
+            <div class="card-cta-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3a3632" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            </div>
+          </div>
+        </div>
+        <div class="product-info">
+          <p class="product-category-tag">Cushion Cover</p>
+          <p class="product-name">Cyan Nargis</p>
+          <p class="product-variant">Set of 2 · 16×16 in · Zip closure</p>
+          <div class="product-bottom">
+            <p class="product-price">₹ 1,600</p>
+            <div class="product-swatches">
+              <div class="swatch" style="background:#78d0c0;" title="Cyan"></div>
+              <div class="swatch" style="background:#e05880;" title="Pink"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 9. Ivory Rose Print -->
+      <div class="product-card" data-category="cushion" data-price="950" data-new="false">
+        <div class="product-image">
+          <img src="cc-ivory-rose-print/Pic-1.png" alt="Ivory Rose Bouquet Cushion Cover" />
+          <div class="card-cta">
+            <span class="card-cta-text">Add to Bag</span>
+            <div class="card-cta-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3a3632" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            </div>
+          </div>
+        </div>
+        <div class="product-info">
+          <p class="product-category-tag">Cushion Cover</p>
+          <p class="product-name">Ivory Rose Bouquet</p>
+          <p class="product-variant">Single · 16×16 in · Zip closure</p>
+          <div class="product-bottom">
+            <p class="product-price">₹ 950</p>
+            <div class="product-swatches">
+              <div class="swatch" style="background:#e8e2d6;" title="Ivory"></div>
+              <div class="swatch" style="background:#c07890;" title="Rose"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 10. Cyan Magenta Jaal -->
+      <div class="product-card" data-category="cushion" data-price="950" data-new="true">
+        <div class="product-image">
+          <span class="badge badge-new">New</span>
+          <img src="cc-cyanMagentaJaal/Pic1.png" alt="Cyan Magenta Jaal Cushion Cover" />
+          <div class="card-cta">
+            <span class="card-cta-text">Add to Bag</span>
+            <div class="card-cta-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3a3632" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            </div>
+          </div>
+        </div>
+        <div class="product-info">
+          <p class="product-category-tag">Cushion Cover</p>
+          <p class="product-name">Teal Hibiscus Jaal</p>
+          <p class="product-variant">Single · 16×16 in · Zip closure</p>
+          <div class="product-bottom">
+            <p class="product-price">₹ 950</p>
+            <div class="product-swatches">
+              <div class="swatch" style="background:#3ec4b0;" title="Teal"></div>
+              <div class="swatch" style="background:#e84880;" title="Magenta"></div>
+              <div class="swatch" style="background:#487838;" title="Forest"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 11. Maroon Grey Butterfly -->
+      <div class="product-card" data-category="cushion" data-price="1600" data-new="false">
+        <div class="product-image">
+          <img src="cc-maroonGreyButterfly/Pic1.png" alt="Maroon Butterfly Cushion Cover" />
+          <div class="card-cta">
+            <span class="card-cta-text">Add to Bag</span>
+            <div class="card-cta-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3a3632" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            </div>
+          </div>
+        </div>
+        <div class="product-info">
+          <p class="product-category-tag">Cushion Cover</p>
+          <p class="product-name">Maroon Butterfly</p>
+          <p class="product-variant">Set of 2 · 16×16 in · Zip closure</p>
+          <div class="product-bottom">
+            <p class="product-price">₹ 1,600</p>
+            <div class="product-swatches">
+              <div class="swatch" style="background:#e8e2d6;" title="Ivory"></div>
+              <div class="swatch" style="background:#a03050;" title="Maroon"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 12. Maroon Stripes -->
+      <div class="product-card" data-category="cushion" data-price="950" data-new="false">
+        <div class="product-image">
+          <img src="cc-maroonStripes/Pic-1.png" alt="Rose Stripe Kantha Cushion Cover" />
+          <div class="card-cta">
+            <span class="card-cta-text">Add to Bag</span>
+            <div class="card-cta-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3a3632" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            </div>
+          </div>
+        </div>
+        <div class="product-info">
+          <p class="product-category-tag">Cushion Cover</p>
+          <p class="product-name">Rose Stripe Kantha</p>
+          <p class="product-variant">Single · 16×16 in · Kantha quilted</p>
+          <div class="product-bottom">
+            <p class="product-price">₹ 950</p>
+            <div class="product-swatches">
+              <div class="swatch" style="background:#d05870;" title="Rose"></div>
+              <div class="swatch" style="background:#e8e2d6;" title="White"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Empty state -->
+      <div class="empty-state" id="empty-state">
+        <p>No products found in this category.</p>
+      </div>
+
+    </div><!-- end .product-grid -->
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo-mark">
+          <svg width="20" height="26" viewBox="0 0 56 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M28 28 C28 28 14 22 13 10 C12 2 19 0 24 4 C26 5.5 27 8 28 10 C29 8 30 5.5 32 4 C37 0 44 2 43 10 C42 22 28 28 28 28Z" fill="rgba(247,244,239,0.8)"/>
+            <line x1="28" y1="28" x2="19" y2="4"  stroke="rgba(58,54,50,0.5)" stroke-width="0.7"/>
+            <line x1="28" y1="28" x2="24" y2="1.5" stroke="rgba(58,54,50,0.5)" stroke-width="0.7"/>
+            <line x1="28" y1="28" x2="28" y2="1"   stroke="rgba(58,54,50,0.5)" stroke-width="0.7"/>
+            <line x1="28" y1="28" x2="32" y2="1.5" stroke="rgba(58,54,50,0.5)" stroke-width="0.7"/>
+            <line x1="28" y1="28" x2="37" y2="4"   stroke="rgba(58,54,50,0.5)" stroke-width="0.7"/>
+            <line x1="28" y1="28" x2="28" y2="68" stroke="rgba(247,244,239,0.8)" stroke-width="1.2"/>
+            <path d="M28 44 C22 40 10 42 8 50 C16 52 26 48 28 44Z" fill="rgba(247,244,239,0.8)"/>
+            <path d="M28 44 C34 40 46 42 48 50 C40 52 30 48 28 44Z" fill="rgba(247,244,239,0.8)"/>
+          </svg>
+        </div>
+        <p class="footer-logo-wordmark">Ekaika</p>
+        <p class="footer-logo-sub">Living</p>
+        <p class="footer-tagline">Hand block-printed home linens, made with intention in India.</p>
+        <div class="social-row">
+          <a href="#" class="social-link">Instagram</a>
+          <a href="#" class="social-link">Pinterest</a>
+          <a href="#" class="social-link">Facebook</a>
+        </div>
+      </div>
+      <div>
+        <p class="footer-col-title">Shop</p>
+        <ul class="footer-links">
+          <li><a href="collection.html">Bedsheets</a></li>
+          <li><a href="collection.html">Quilted Bedcovers</a></li>
+          <li><a href="collection.html">Cushion Covers</a></li>
+          <li><a href="collection.html">Gift Sets</a></li>
+          <li><a href="collection.html">New Arrivals</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-col-title">About</p>
+        <ul class="footer-links">
+          <li><a href="#">Our Craft Story</a></li>
+          <li><a href="#">The Artisans</a></li>
+          <li><a href="#">Sustainability</a></li>
+          <li><a href="#">Journal</a></li>
+          <li><a href="#">Press</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-col-title">Help</p>
+        <ul class="footer-links">
+          <li><a href="#">Sizing Guide</a></li>
+          <li><a href="#">Care Instructions</a></li>
+          <li><a href="#">Shipping &amp; Returns</a></li>
+          <li><a href="#">Track Order</a></li>
+          <li><a href="#">FAQs</a></li>
+        </ul>
+      </div>
+    </div>
+    <div style="max-width:1440px;margin:0 auto;">
+      <hr style="border:none;border-top:1px solid rgba(247,244,239,0.08);margin:0 48px;" />
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 Ekaika Living. All rights reserved.</p>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const allCards = Array.from(document.querySelectorAll('.product-card'));
+    const editorialBreak = document.getElementById('cushion-break');
+    const emptyState = document.getElementById('empty-state');
+    const resultsCount = document.getElementById('results-count');
+    let activeFilter = 'all';
+
+    function filterProducts(category) {
+      activeFilter = category;
+
+      // Update tab UI
+      document.querySelectorAll('.filter-tab').forEach(tab => {
+        tab.classList.toggle('active', tab.dataset.filter === category);
+      });
+
+      let visible = 0;
+      allCards.forEach(card => {
+        const match = category === 'all' || card.dataset.category === category;
+        card.classList.toggle('hidden', !match);
+        if (match) visible++;
+      });
+
+      // Hide editorial break when filtering to specific category
+      editorialBreak.style.display = (category === 'all') ? '' : 'none';
+
+      resultsCount.textContent = visible;
+      emptyState.classList.toggle('visible', visible === 0);
+
+      sortProducts(document.getElementById('sort-select').value);
+    }
+
+    function handleSort(value) {
+      sortProducts(value);
+    }
+
+    function sortProducts(value) {
+      const grid = document.getElementById('product-grid');
+      const visibleCards = allCards.filter(c => !c.classList.contains('hidden'));
+
+      visibleCards.sort((a, b) => {
+        if (value === 'price-asc') return parseInt(a.dataset.price) - parseInt(b.dataset.price);
+        if (value === 'price-desc') return parseInt(b.dataset.price) - parseInt(a.dataset.price);
+        if (value === 'new') return (b.dataset.new === 'true') - (a.dataset.new === 'true');
+        return 0; // featured — keep DOM order
+      });
+
+      // Re-append in sorted order
+      visibleCards.forEach(card => grid.appendChild(card));
+
+      // Keep editorial break and empty state at end
+      if (activeFilter === 'all') grid.appendChild(editorialBreak);
+      grid.appendChild(emptyState);
+    }
+  </script>
+
+</body>
+</html>

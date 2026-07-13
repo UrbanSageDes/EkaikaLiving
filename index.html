@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/shared.css" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -119,6 +120,21 @@
       text-transform: uppercase;
       color: var(--charcoal);
       text-decoration: none;
+      background: none;
+      border: none;
+      font-family: var(--sans);
+    }
+
+    .nav-hamburger {
+      display: none;
+      width: 28px;
+      height: 28px;
+      border: none;
+      background: none;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      color: var(--charcoal);
     }
 
     /* ── HERO ── */
@@ -321,6 +337,7 @@
     }
 
     .editorial-feature-image {
+      display: block;
       aspect-ratio: 3/4;
       overflow: hidden;
     }
@@ -380,22 +397,6 @@
       letter-spacing: 0.1em;
       color: var(--charcoal-xlight);
     }
-
-    .swatch-row { display: flex; gap: 8px; margin-bottom: 36px; }
-
-    .swatch {
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      border: 1.5px solid transparent;
-      cursor: pointer;
-      outline: 2px solid transparent;
-      outline-offset: 2px;
-      transition: outline-color 0.2s;
-    }
-
-    .swatch.active { outline-color: var(--charcoal); }
-    .swatch:hover { outline-color: var(--charcoal-light); }
 
     /* ── PRODUCT CARDS ── */
     .product-grid-2 {
@@ -924,6 +925,56 @@
     }
 
     .footer-legal a:hover { color: rgba(247,244,239,0.6); }
+
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-image { min-height: 60vh; }
+      .hero-text { padding: 56px 24px; }
+      .hero-scroll { left: 24px; }
+      .editorial-feature { grid-template-columns: 1fr; }
+      .product-grid-2 { grid-template-columns: 1fr; }
+      .product-grid-3 { grid-template-columns: 1fr 1fr; }
+      .process-inner { grid-template-columns: 1fr 1fr; }
+      .process-step { border-right: none; border-bottom: 1px solid rgba(247,244,239,0.08); }
+      .craft-inner { grid-template-columns: 1fr; gap: 48px; }
+      .craft-image-float { display: none; }
+      .footer-inner { grid-template-columns: 1fr 1fr; gap: 36px; }
+      .section-wrap, .category-strip-inner, .craft-inner, .process-inner, .footer-inner, .footer-bottom { padding-left: 20px; padding-right: 20px; }
+      .wide-banner-content { padding: 80px 24px; }
+    }
+
+    @media (max-width: 860px) {
+      .nav-inner { grid-template-columns: auto 1fr auto; padding: 0 20px; }
+      .nav-hamburger { display: flex; }
+
+      .nav-left {
+        position: absolute;
+        top: 68px; left: 0; right: 0;
+        background: var(--white);
+        border-bottom: 1px solid var(--linen-dark);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+        padding: 8px 20px;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height 0.25s ease, opacity 0.2s ease;
+      }
+
+      .nav-left.nav-open { max-height: 320px; opacity: 1; }
+      .nav-left a { padding: 14px 0; width: 100%; border-bottom: 1px solid var(--linen); }
+      .nav-left a:last-child { border-bottom: none; }
+
+      .nav-right { gap: 18px; }
+      .nav-icon .icon-label { display: none; }
+    }
+
+    @media (max-width: 520px) {
+      .footer-inner { grid-template-columns: 1fr; }
+      .product-grid-3 { grid-template-columns: 1fr; }
+      .craft-stats { flex-wrap: wrap; gap: 24px; }
+    }
   </style>
 </head>
 <body>
@@ -931,14 +982,17 @@
   <!-- HEADER -->
   <header>
     <div class="nav-inner">
+      <button class="nav-hamburger" data-nav-toggle aria-label="Open menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
       <nav class="nav-left">
-        <a href="collection.html">Bedsheets</a>
-        <a href="collection.html">Quilts</a>
-        <a href="collection.html">Cushions</a>
-        <a href="collection.html">New Arrivals</a>
+        <a href="collection.html?category=bedsheet">Bedsheets</a>
+        <a href="collection.html?category=quilt">Quilts</a>
+        <a href="collection.html?category=cushion">Cushions</a>
+        <a href="collection.html?sort=new">New Arrivals</a>
       </nav>
 
-      <a href="#" class="logo-link">
+      <a href="index.html" class="logo-link">
         <!-- Ekaika flower mark SVG -->
         <svg width="28" height="36" viewBox="0 0 56 72" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom:2px;">
           <!-- Fan flower head -->
@@ -963,17 +1017,17 @@
       </a>
 
       <div class="nav-right">
-        <a href="#" class="nav-icon">
+        <button class="nav-icon" data-search-trigger>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-          Search
-        </a>
-        <a href="#" class="nav-icon">
+          <span class="icon-label">Search</span>
+        </button>
+        <a href="wishlist.html" class="nav-icon">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-          Saved
+          <span class="icon-label">Saved (<span data-saved-count>0</span>)</span>
         </a>
-        <a href="#" class="nav-icon">
+        <a href="bag.html" class="nav-icon">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-          Bag (0)
+          <span class="icon-label">Bag (<span data-bag-count>0</span>)</span>
         </a>
       </div>
     </div>
@@ -1008,9 +1062,9 @@
       <span class="category-strip-label">Shop by</span>
       <div class="category-pills">
         <a href="collection.html" class="pill active">All</a>
-        <a href="collection.html" class="pill">Bedsheets</a>
-        <a href="collection.html" class="pill">Quilted Bedcovers</a>
-        <a href="collection.html" class="pill">Cushion Covers</a>
+        <a href="collection.html?category=bedsheet" class="pill">Bedsheets</a>
+        <a href="collection.html?category=quilt" class="pill">Quilted Bedcovers</a>
+        <a href="collection.html?category=cushion" class="pill">Cushion Covers</a>
         <a href="collection.html" class="pill">Gift Sets</a>
       </div>
     </div>
@@ -1026,12 +1080,12 @@
     </div>
 
     <div class="editorial-feature">
-      <div class="editorial-feature-image">
+      <a class="editorial-feature-image" href="product.html?slug=pale-pink-jaal">
         <img src="bs-PalepinkblockPrint/Pic1.png" alt="Pale Pink Block Print Bedsheet — styled bed" />
-      </div>
+      </a>
       <div class="editorial-feature-content">
         <p class="product-tag">Bedsheet — King / Queen</p>
-        <h2 class="product-name-large">Pale Pink<br/><em>Jaal</em><br/>Bedsheet</h2>
+        <h2 class="product-name-large"><a href="product.html?slug=pale-pink-jaal" style="color:inherit;text-decoration:none;">Pale Pink<br/><em>Jaal</em><br/>Bedsheet</a></h2>
         <p class="product-desc">
           A delicate lattice pattern in dusty rose, block-printed on 300-thread-count
           pure cotton. Includes two pillow covers. Each run has subtle variation —
@@ -1041,22 +1095,16 @@
           <span class="product-price">₹ 4,800</span>
           <span class="product-price-sub">incl. taxes · free shipping</span>
         </div>
-        <div class="swatch-row">
-          <div class="swatch active" style="background:#d9a8a0;" title="Pale Pink"></div>
-          <div class="swatch" style="background:#8fb4a0;" title="Sage"></div>
-          <div class="swatch" style="background:#c9b98a;" title="Gold"></div>
-          <div class="swatch" style="background:#e8e2d8;" title="Natural"></div>
-        </div>
-        <a href="#" class="btn-primary">Add to Bag</a>
+        <button type="button" class="btn-primary" data-add-to-bag="pale-pink-jaal" style="border:none;cursor:pointer;">Add to Bag</button>
       </div>
     </div>
 
     <!-- 2-COL PRODUCT GRID -->
     <div class="product-grid-2" style="margin-top:2px;">
-      <div class="product-card">
+      <div class="product-card" data-slug="mint-buti-bel">
         <div class="product-card-image">
           <img src="cc-mintMagentaButiBel/Pic-1.png" alt="Mint Magenta Buti Bel Cushion Cover" />
-          <div class="product-card-cta">
+          <div class="product-card-cta" data-add-to-bag="mint-buti-bel">
             <span>Add to Bag</span>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3a3632" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
           </div>
@@ -1067,10 +1115,10 @@
           <p class="product-card-price">₹ 1,600</p>
         </div>
       </div>
-      <div class="product-card">
+      <div class="product-card" data-slug="ivory-rose-bouquet">
         <div class="product-card-image">
           <img src="cc-ivory-rose-print/Pic-1.png" alt="Ivory Rose Print Cushion Cover" />
-          <div class="product-card-cta">
+          <div class="product-card-cta" data-add-to-bag="ivory-rose-bouquet">
             <span>Add to Bag</span>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3a3632" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
           </div>
@@ -1093,7 +1141,7 @@
     <div class="wide-banner-content">
       <p class="eyebrow">New In — Quilted Bedcovers</p>
       <h2>Quiet craft<br/>for <em>modern</em><br/>spaces</h2>
-      <a href="collection.html">Explore Quilts</a>
+      <a href="collection.html?category=quilt">Explore Quilts</a>
     </div>
   </div>
 
@@ -1137,7 +1185,7 @@
             <p class="stat-label">Dyes &amp; pigments</p>
           </div>
         </div>
-        <a href="#" class="btn-primary">Read the Full Story</a>
+        <a href="about.html" class="btn-primary">Read the Full Story</a>
       </div>
     </div>
   </section>
@@ -1163,10 +1211,10 @@
       </div>
     </div>
     <div class="product-grid-3">
-      <div class="product-card">
+      <div class="product-card" data-slug="ivory-noor-buta">
         <div class="product-card-image" style="aspect-ratio:3/4;">
           <img src="bs-Ivory gold Noor Buta/Pic1.png" alt="Ivory Gold Noor Buta Bedsheet" />
-          <div class="product-card-cta">
+          <div class="product-card-cta" data-add-to-bag="ivory-noor-buta">
             <span>Add to Bag</span>
           </div>
         </div>
@@ -1176,10 +1224,10 @@
           <p class="product-card-price">₹ 5,200</p>
         </div>
       </div>
-      <div class="product-card">
+      <div class="product-card" data-slug="nargis-jaal-quilt">
         <div class="product-card-image" style="aspect-ratio:3/4;">
           <img src="bs-Quited reversible/pic1.png" alt="Quilted Reversible Bedcover" />
-          <div class="product-card-cta">
+          <div class="product-card-cta" data-add-to-bag="nargis-jaal-quilt">
             <span>Add to Bag</span>
           </div>
         </div>
@@ -1189,10 +1237,10 @@
           <p class="product-card-price">₹ 8,400</p>
         </div>
       </div>
-      <div class="product-card">
+      <div class="product-card" data-slug="ivory-rose-bouquet">
         <div class="product-card-image" style="aspect-ratio:3/4;">
           <img src="cc-ivory-rose-print/Pic-1.png" alt="Ivory Rose Print Cushion" />
-          <div class="product-card-cta">
+          <div class="product-card-cta" data-add-to-bag="ivory-rose-bouquet">
             <span>Add to Bag</span>
           </div>
         </div>
@@ -1232,7 +1280,7 @@
   </div>
 
   <!-- NEWSLETTER -->
-  <section class="newsletter">
+  <section class="newsletter" id="newsletter">
     <div class="newsletter-inner">
       <p class="newsletter-eyebrow">Stay Close</p>
       <h2 class="newsletter-title">Letters from <em>the block</em></h2>
@@ -1240,10 +1288,11 @@
         New collections, craft dispatches, and stories from the artisans —
         sent gently, never cluttered.
       </p>
-      <form class="email-form" onsubmit="return false;">
-        <input type="email" placeholder="your@email.com" />
+      <form class="email-form" id="newsletter-form">
+        <input type="email" placeholder="your@email.com" required />
         <button type="submit">Subscribe</button>
       </form>
+      <p id="newsletter-confirm" style="display:none;margin-top:16px;font-size:11px;letter-spacing:0.08em;color:var(--accent);">Thank you — you're on the list.</p>
     </div>
   </section>
 
@@ -1271,41 +1320,39 @@
           made with intention in India.
         </p>
         <div class="social-row">
-          <a href="#" class="social-link">Instagram</a>
-          <a href="#" class="social-link">Pinterest</a>
-          <a href="#" class="social-link">Facebook</a>
+          <a href="https://instagram.com/ekaikaliving" class="social-link" target="_blank" rel="noopener">Instagram</a>
         </div>
       </div>
       <div>
         <p class="footer-col-title">Shop</p>
         <ul class="footer-links">
-          <li><a href="collection.html">Bedsheets</a></li>
-          <li><a href="collection.html">Quilted Bedcovers</a></li>
-          <li><a href="collection.html">Cushion Covers</a></li>
+          <li><a href="collection.html?category=bedsheet">Bedsheets</a></li>
+          <li><a href="collection.html?category=quilt">Quilted Bedcovers</a></li>
+          <li><a href="collection.html?category=cushion">Cushion Covers</a></li>
           <li><a href="collection.html">Gift Sets</a></li>
-          <li><a href="collection.html">New Arrivals</a></li>
+          <li><a href="collection.html?sort=new">New Arrivals</a></li>
           <li><a href="collection.html">Sale</a></li>
         </ul>
       </div>
       <div>
         <p class="footer-col-title">About</p>
         <ul class="footer-links">
-          <li><a href="#">Our Craft Story</a></li>
-          <li><a href="#">The Artisans</a></li>
-          <li><a href="#">Sustainability</a></li>
-          <li><a href="#">Journal</a></li>
-          <li><a href="#">Press</a></li>
+          <li><a href="about.html">Our Craft Story</a></li>
+          <li><a href="about.html#artisans">The Artisans</a></li>
+          <li><a href="about.html#sustainability">Sustainability</a></li>
+          <li><a href="about.html#journal">Journal</a></li>
+          <li><a href="about.html#press">Press</a></li>
         </ul>
       </div>
       <div>
         <p class="footer-col-title">Help</p>
         <ul class="footer-links">
-          <li><a href="#">Sizing Guide</a></li>
-          <li><a href="#">Care Instructions</a></li>
-          <li><a href="#">Shipping &amp; Returns</a></li>
-          <li><a href="#">Track Order</a></li>
-          <li><a href="#">Contact Us</a></li>
-          <li><a href="#">FAQs</a></li>
+          <li><a href="sizing-guide.html">Sizing Guide</a></li>
+          <li><a href="care-instructions.html">Care Instructions</a></li>
+          <li><a href="shipping-returns.html">Shipping &amp; Returns</a></li>
+          <li><a href="track-order.html">Track Order</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="faq.html">FAQs</a></li>
         </ul>
       </div>
     </div>
@@ -1315,12 +1362,24 @@
     <div class="footer-bottom">
       <p class="footer-copy">© 2026 Ekaika Living. All rights reserved.</p>
       <div class="footer-legal">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Use</a>
-        <a href="#">Cookie Settings</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms-of-use.html">Terms of Use</a>
+        <a href="privacy-policy.html#cookies">Cookie Settings</a>
       </div>
     </div>
   </footer>
 
+  <script src="assets/products.js"></script>
+  <script src="assets/store.js"></script>
+  <script>
+    const newsletterForm = document.getElementById('newsletter-form');
+    if (newsletterForm) {
+      newsletterForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        newsletterForm.style.display = 'none';
+        document.getElementById('newsletter-confirm').style.display = 'block';
+      });
+    }
+  </script>
 </body>
 </html>

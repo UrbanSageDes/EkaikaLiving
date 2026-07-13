@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Bag — Ekaika Living</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/base.css" />
+  <link rel="stylesheet" href="assets/shared.css" />
+  <style>
+    .bag-main {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 140px 48px 120px;
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .bag-title { font-family: var(--serif); font-size: clamp(32px, 3.5vw, 46px); font-weight: 300; margin-bottom: 40px; }
+
+    .bag-line {
+      display: grid;
+      grid-template-columns: 96px 1fr auto;
+      gap: 20px;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--linen-dark);
+      align-items: center;
+    }
+
+    .bag-line-img { width: 96px; aspect-ratio: 3/4; overflow: hidden; background: var(--linen); }
+    .bag-line-img img { width: 100%; height: 100%; object-fit: cover; }
+
+    .bag-line-name { font-family: var(--serif); font-size: 19px; color: var(--charcoal); margin-bottom: 4px; text-decoration: none; display: block; }
+    .bag-line-variant { font-size: 11px; color: var(--charcoal-xlight); margin-bottom: 10px; }
+    .bag-line-price { font-family: var(--serif); font-size: 15px; color: var(--charcoal); }
+
+    .bag-line-controls { display: flex; flex-direction: column; align-items: flex-end; gap: 12px; }
+    .bag-qty-stepper { display: flex; align-items: center; border: 1px solid var(--linen-dark); }
+    .bag-qty-stepper button { width: 30px; height: 34px; background: none; border: none; cursor: pointer; font-size: 14px; }
+    .bag-qty-stepper button:hover { background: var(--linen); }
+    .bag-qty-stepper span { width: 28px; text-align: center; font-size: 12px; }
+    .bag-remove { font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--charcoal-xlight); background: none; border: none; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+    .bag-remove:hover { color: var(--charcoal); }
+
+    .summary-box { background: var(--white); border: 1px solid var(--linen-dark); padding: 32px; position: sticky; top: 100px; }
+    .summary-title { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--charcoal-xlight); margin-bottom: 20px; }
+    .summary-row { display: flex; justify-content: space-between; font-size: 13px; color: var(--charcoal-light); margin-bottom: 12px; }
+    .summary-row.total { border-top: 1px solid var(--linen-dark); padding-top: 16px; margin-top: 16px; font-size: 16px; color: var(--charcoal); font-family: var(--serif); }
+    .summary-box .btn-primary { width: 100%; margin-top: 20px; }
+
+    @media (max-width: 860px) {
+      .bag-main { grid-template-columns: 1fr; padding-top: 100px; padding-left: 20px; padding-right: 20px; }
+      .bag-line { grid-template-columns: 72px 1fr; }
+      .bag-line-controls { grid-column: 1/-1; flex-direction: row; justify-content: space-between; align-items: center; margin-top: 8px; }
+      .summary-box { position: static; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="nav-inner">
+      <button class="nav-hamburger" data-nav-toggle aria-label="Open menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <nav class="nav-left">
+        <a href="index.html">Home</a>
+        <a href="collection.html">All Products</a>
+        <a href="collection.html?category=quilt">Quilts</a>
+        <a href="collection.html?category=cushion">Cushions</a>
+      </nav>
+
+      <a href="index.html" class="logo-link">
+        <svg width="28" height="36" viewBox="0 0 56 72" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom:2px;">
+          <path d="M28 28 C28 28 14 22 13 10 C12 2 19 0 24 4 C26 5.5 27 8 28 10 C29 8 30 5.5 32 4 C37 0 44 2 43 10 C42 22 28 28 28 28Z" fill="#3a3632"/>
+          <line x1="28" y1="28" x2="28" y2="68" stroke="#3a3632" stroke-width="1.2"/>
+          <path d="M28 44 C22 40 10 42 8 50 C16 52 26 48 28 44Z" fill="#3a3632"/>
+          <path d="M28 44 C34 40 46 42 48 50 C40 52 30 48 28 44Z" fill="#3a3632"/>
+        </svg>
+        <span class="logo-wordmark">Ekaika</span>
+        <span class="logo-sub">Living</span>
+      </a>
+
+      <div class="nav-right">
+        <button class="nav-icon" data-search-trigger>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <span class="icon-label">Search</span>
+        </button>
+        <a href="wishlist.html" class="nav-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          <span class="icon-label">Saved (<span data-saved-count>0</span>)</span>
+        </a>
+        <a href="bag.html" class="nav-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="icon-label">Bag (<span data-bag-count>0</span>)</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <div id="bag-app"></div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo-mark">
+          <svg width="20" height="26" viewBox="0 0 56 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M28 28 C28 28 14 22 13 10 C12 2 19 0 24 4 C26 5.5 27 8 28 10 C29 8 30 5.5 32 4 C37 0 44 2 43 10 C42 22 28 28 28 28Z" fill="rgba(247,244,239,0.8)"/>
+            <line x1="28" y1="28" x2="28" y2="68" stroke="rgba(247,244,239,0.8)" stroke-width="1.2"/>
+            <path d="M28 44 C22 40 10 42 8 50 C16 52 26 48 28 44Z" fill="rgba(247,244,239,0.8)"/>
+            <path d="M28 44 C34 40 46 42 48 50 C40 52 30 48 28 44Z" fill="rgba(247,244,239,0.8)"/>
+          </svg>
+        </div>
+        <p class="footer-logo-wordmark">Ekaika</p>
+        <p class="footer-logo-sub">Living</p>
+        <p class="footer-tagline">Hand block-printed home linens, made with intention in India.</p>
+        <div class="social-row">
+          <a href="https://instagram.com/ekaikaliving" class="social-link" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
+      <div>
+        <p class="footer-col-title">Shop</p>
+        <ul class="footer-links">
+          <li><a href="collection.html?category=bedsheet">Bedsheets</a></li>
+          <li><a href="collection.html?category=quilt">Quilted Bedcovers</a></li>
+          <li><a href="collection.html?category=cushion">Cushion Covers</a></li>
+          <li><a href="collection.html?sort=new">New Arrivals</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-col-title">About</p>
+        <ul class="footer-links">
+          <li><a href="about.html">Our Craft Story</a></li>
+          <li><a href="about.html#artisans">The Artisans</a></li>
+          <li><a href="about.html#sustainability">Sustainability</a></li>
+          <li><a href="about.html#journal">Journal</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-col-title">Help</p>
+        <ul class="footer-links">
+          <li><a href="sizing-guide.html">Sizing Guide</a></li>
+          <li><a href="care-instructions.html">Care Instructions</a></li>
+          <li><a href="shipping-returns.html">Shipping &amp; Returns</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="faq.html">FAQs</a></li>
+        </ul>
+      </div>
+    </div>
+    <div style="max-width:1440px;margin:0 auto;">
+      <hr style="border:none;border-top:1px solid rgba(247,244,239,0.08);margin:0 48px;" />
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 Ekaika Living. All rights reserved.</p>
+      <div class="footer-legal">
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms-of-use.html">Terms of Use</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/products.js"></script>
+  <script src="assets/store.js"></script>
+  <script>
+    function renderBag() {
+      const app = document.getElementById('bag-app');
+      const cart = getCart();
+
+      if (!cart.length) {
+        app.innerHTML = `
+          <div class="empty-block" style="padding-top:160px;">
+            <p class="headline">Your bag is empty.</p>
+            <a href="collection.html" class="btn-primary">Continue Shopping</a>
+          </div>`;
+        return;
+      }
+
+      const lines = cart.map((line, i) => {
+        const p = findProduct(line.slug);
+        if (!p) return null;
+        return { ...line, index: i, product: p };
+      }).filter(Boolean);
+
+      const subtotal = lines.reduce((sum, l) => sum + l.product.price * l.qty, 0);
+
+      app.innerHTML = `
+        <div class="bag-main">
+          <div>
+            <h1 class="bag-title">Your <em style="font-style:italic;color:var(--accent);">Bag</em></h1>
+            <div id="bag-lines"></div>
+          </div>
+          <div class="summary-box">
+            <p class="summary-title">Order Summary</p>
+            <div class="summary-row"><span>Subtotal</span><span id="summary-subtotal"></span></div>
+            <div class="summary-row"><span>Shipping</span><span>Free</span></div>
+            <div class="summary-row total"><span>Total</span><span id="summary-total"></span></div>
+            <a href="checkout.html" class="btn-primary">Proceed to Checkout</a>
+          </div>
+        </div>
+      `;
+
+      document.getElementById('summary-subtotal').textContent = formatPrice(subtotal);
+      document.getElementById('summary-total').textContent = formatPrice(subtotal);
+
+      const linesEl = document.getElementById('bag-lines');
+      lines.forEach(l => {
+        const row = document.createElement('div');
+        row.className = 'bag-line';
+        row.innerHTML = `
+          <a href="product.html?slug=${l.product.slug}" class="bag-line-img"><img src="${productCoverImage(l.product)}" alt="${l.product.name}" /></a>
+          <div>
+            <a href="product.html?slug=${l.product.slug}" class="bag-line-name">${l.product.name}</a>
+            <p class="bag-line-variant">${l.product.categoryLabel}${l.size ? ' · ' + l.size : ''}</p>
+            <p class="bag-line-price">${formatPrice(l.product.price)}</p>
+          </div>
+          <div class="bag-line-controls">
+            <div class="bag-qty-stepper">
+              <button type="button" data-minus aria-label="Decrease quantity">&minus;</button>
+              <span>${l.qty}</span>
+              <button type="button" data-plus aria-label="Increase quantity">+</button>
+            </div>
+            <button type="button" class="bag-remove" data-remove>Remove</button>
+          </div>
+        `;
+        row.querySelector('[data-minus]').addEventListener('click', () => {
+          setCartQty(l.index, l.qty - 1);
+          renderBag();
+        });
+        row.querySelector('[data-plus]').addEventListener('click', () => {
+          setCartQty(l.index, l.qty + 1);
+          renderBag();
+        });
+        row.querySelector('[data-remove]').addEventListener('click', () => {
+          removeFromCart(l.index);
+          renderBag();
+        });
+        linesEl.appendChild(row);
+      });
+    }
+
+    renderBag();
+  </script>
+</body>
+</html>

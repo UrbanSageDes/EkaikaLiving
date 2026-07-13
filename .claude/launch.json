@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "static-site",
+      "runtimeExecutable": "/usr/local/bin/python3",
+      "runtimeArgs": ["/Users/akshatkapoor/Downloads/Ekaika/.claude/serve.py", "8743"],
+      "port": 8743
+    }
+  ]
+}

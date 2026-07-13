@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Track Order — Ekaika Living</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/base.css" />
+  <link rel="stylesheet" href="assets/shared.css" />
+  <style>
+    .track-result { display: none; margin-top: 28px; padding: 24px; background: var(--white); border: 1px solid var(--linen-dark); font-size: 13px; color: var(--charcoal-light); line-height: 1.8; }
+    .track-result.visible { display: block; }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="nav-inner">
+      <button class="nav-hamburger" data-nav-toggle aria-label="Open menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <nav class="nav-left">
+        <a href="index.html">Home</a>
+        <a href="collection.html">All Products</a>
+        <a href="collection.html?category=quilt">Quilts</a>
+        <a href="collection.html?category=cushion">Cushions</a>
+      </nav>
+
+      <a href="index.html" class="logo-link">
+        <svg width="28" height="36" viewBox="0 0 56 72" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom:2px;">
+          <path d="M28 28 C28 28 14 22 13 10 C12 2 19 0 24 4 C26 5.5 27 8 28 10 C29 8 30 5.5 32 4 C37 0 44 2 43 10 C42 22 28 28 28 28Z" fill="#3a3632"/>
+          <line x1="28" y1="28" x2="28" y2="68" stroke="#3a3632" stroke-width="1.2"/>
+          <path d="M28 44 C22 40 10 42 8 50 C16 52 26 48 28 44Z" fill="#3a3632"/>
+          <path d="M28 44 C34 40 46 42 48 50 C40 52 30 48 28 44Z" fill="#3a3632"/>
+        </svg>
+        <span class="logo-wordmark">Ekaika</span>
+        <span class="logo-sub">Living</span>
+      </a>
+
+      <div class="nav-right">
+        <button class="nav-icon" data-search-trigger>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <span class="icon-label">Search</span>
+        </button>
+        <a href="wishlist.html" class="nav-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          <span class="icon-label">Saved (<span data-saved-count>0</span>)</span>
+        </a>
+        <a href="bag.html" class="nav-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="icon-label">Bag (<span data-bag-count>0</span>)</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <div class="page-header">
+    <div class="page-header-inner">
+      <div class="breadcrumb"><a href="index.html">Home</a><span>/</span><span>Track Order</span></div>
+      <h1 class="page-title">Track Your <em>Order</em></h1>
+      <p class="page-subtitle">Enter your order number and the email you used at checkout.</p>
+    </div>
+  </div>
+
+  <main class="page-main narrow">
+    <form id="track-form">
+      <div class="field"><label for="t-order">Order number</label><input id="t-order" placeholder="e.g. EK482910" required /></div>
+      <div class="field"><label for="t-email">Email</label><input id="t-email" type="email" required /></div>
+      <button type="submit" class="btn-primary">Track Order</button>
+    </form>
+
+    <div class="track-result" id="track-result">
+      <p>This storefront is a demo, so live order tracking isn't connected yet — but we're glad to look this up for you personally.</p>
+      <p style="margin-top:12px;">Message us at <a href="mailto:ekaikaliving@gmail.com" style="color:var(--accent);">ekaikaliving@gmail.com</a> or <a href="https://wa.me/918595441145" target="_blank" rel="noopener" style="color:var(--accent);">WhatsApp</a> with your order number and we'll send you a status update directly.</p>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo-mark">
+          <svg width="20" height="26" viewBox="0 0 56 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M28 28 C28 28 14 22 13 10 C12 2 19 0 24 4 C26 5.5 27 8 28 10 C29 8 30 5.5 32 4 C37 0 44 2 43 10 C42 22 28 28 28 28Z" fill="rgba(247,244,239,0.8)"/>
+            <line x1="28" y1="28" x2="28" y2="68" stroke="rgba(247,244,239,0.8)" stroke-width="1.2"/>
+            <path d="M28 44 C22 40 10 42 8 50 C16 52 26 48 28 44Z" fill="rgba(247,244,239,0.8)"/>
+            <path d="M28 44 C34 40 46 42 48 50 C40 52 30 48 28 44Z" fill="rgba(247,244,239,0.8)"/>
+          </svg>
+        </div>
+        <p class="footer-logo-wordmark">Ekaika</p>
+        <p class="footer-logo-sub">Living</p>
+        <p class="footer-tagline">Hand block-printed home linens, made with intention in India.</p>
+        <div class="social-row">
+          <a href="https://instagram.com/ekaikaliving" class="social-link" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
+      <div>
+        <p class="footer-col-title">Shop</p>
+        <ul class="footer-links">
+          <li><a href="collection.html?category=bedsheet">Bedsheets</a></li>
+          <li><a href="collection.html?category=quilt">Quilted Bedcovers</a></li>
+          <li><a href="collection.html?category=cushion">Cushion Covers</a></li>
+          <li><a href="collection.html?sort=new">New Arrivals</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-col-title">About</p>
+        <ul class="footer-links">
+          <li><a href="about.html">Our Craft Story</a></li>
+          <li><a href="about.html#artisans">The Artisans</a></li>
+          <li><a href="about.html#sustainability">Sustainability</a></li>
+          <li><a href="about.html#journal">Journal</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-col-title">Help</p>
+        <ul class="footer-links">
+          <li><a href="sizing-guide.html">Sizing Guide</a></li>
+          <li><a href="care-instructions.html">Care Instructions</a></li>
+          <li><a href="shipping-returns.html">Shipping &amp; Returns</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="faq.html">FAQs</a></li>
+        </ul>
+      </div>
+    </div>
+    <div style="max-width:1440px;margin:0 auto;">
+      <hr style="border:none;border-top:1px solid rgba(247,244,239,0.08);margin:0 48px;" />
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 Ekaika Living. All rights reserved.</p>
+      <div class="footer-legal">
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms-of-use.html">Terms of Use</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/products.js"></script>
+  <script src="assets/store.js"></script>
+  <script>
+    document.getElementById('track-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      document.getElementById('track-result').classList.add('visible');
+    });
+  </script>
+</body>
+</html>

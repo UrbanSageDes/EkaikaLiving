@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product — Ekaika Living</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/base.css" />
+  <link rel="stylesheet" href="assets/shared.css" />
+  <style>
+    .product-main {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 68px 48px 0;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 64px;
+    }
+
+    .breadcrumb-row { padding: 28px 0 0; }
+
+    /* Gallery */
+    .gallery { padding: 28px 0 40px; }
+    .gallery-main { aspect-ratio: 3/4; overflow: hidden; background: var(--linen); margin-bottom: 12px; position: relative; }
+    .gallery-main img { width: 100%; height: 100%; object-fit: cover; }
+
+    .gallery-thumbs { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; }
+    .gallery-thumb { aspect-ratio: 1; overflow: hidden; cursor: pointer; border: 1.5px solid transparent; opacity: 0.65; transition: opacity 0.2s, border-color 0.2s; background: var(--linen); }
+    .gallery-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .gallery-thumb:hover { opacity: 1; }
+    .gallery-thumb.active { opacity: 1; border-color: var(--charcoal); }
+
+    /* Details */
+    .product-details { padding: 40px 0 80px; }
+    .detail-category { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+    .detail-name { font-family: var(--serif); font-size: clamp(34px, 3.2vw, 48px); font-weight: 300; color: var(--charcoal); line-height: 1.1; margin-bottom: 16px; }
+    .detail-variant { font-size: 12px; color: var(--charcoal-xlight); letter-spacing: 0.04em; margin-bottom: 20px; }
+    .detail-price { font-family: var(--serif); font-size: 26px; color: var(--charcoal); margin-bottom: 28px; }
+    .detail-desc { font-size: 14px; font-weight: 300; line-height: 1.9; color: var(--charcoal-light); margin-bottom: 36px; max-width: 460px; }
+
+    .option-block { margin-bottom: 28px; }
+    .option-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--charcoal-xlight); margin-bottom: 12px; display: flex; justify-content: space-between; }
+
+    .size-pills { display: flex; gap: 8px; flex-wrap: wrap; }
+    .size-pill {
+      font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--charcoal); background: transparent; border: 1px solid var(--linen-dark);
+      padding: 10px 22px; cursor: pointer; transition: all 0.2s; font-family: var(--sans);
+    }
+    .size-pill:hover { border-color: var(--charcoal); }
+    .size-pill.active { border-color: var(--charcoal); background: var(--charcoal); color: var(--ivory); }
+
+    .qty-row { display: flex; align-items: center; gap: 24px; margin-bottom: 28px; }
+    .qty-stepper { display: flex; align-items: center; border: 1px solid var(--linen-dark); }
+    .qty-stepper button {
+      width: 38px; height: 42px; background: none; border: none; cursor: pointer;
+      font-size: 15px; color: var(--charcoal); font-family: var(--sans);
+    }
+    .qty-stepper button:hover { background: var(--linen); }
+    .qty-stepper span { width: 36px; text-align: center; font-size: 13px; }
+
+    .detail-actions { display: flex; gap: 14px; align-items: center; margin-bottom: 40px; flex-wrap: wrap; }
+    .add-to-bag-main { min-width: 220px; }
+    .wishlist-btn-inline {
+      width: 48px; height: 48px; border: 1px solid var(--linen-dark); background: none;
+      display: flex; align-items: center; justify-content: center; cursor: pointer; transition: border-color 0.2s;
+    }
+    .wishlist-btn-inline:hover { border-color: var(--charcoal); }
+
+    .added-confirm {
+      font-size: 11px; letter-spacing: 0.06em; color: var(--accent);
+      margin-bottom: 24px; display: none;
+    }
+    .added-confirm.visible { display: block; }
+
+    .accordion { border-top: 1px solid var(--linen-dark); }
+    .accordion-item { border-bottom: 1px solid var(--linen-dark); }
+    .accordion-trigger {
+      width: 100%; display: flex; justify-content: space-between; align-items: center;
+      padding: 18px 0; background: none; border: none; cursor: pointer; text-align: left;
+      font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--charcoal); font-family: var(--sans);
+    }
+    .accordion-icon { transition: transform 0.2s; }
+    .accordion-item.open .accordion-icon { transform: rotate(45deg); }
+    .accordion-panel { max-height: 0; overflow: hidden; transition: max-height 0.25s ease; }
+    .accordion-item.open .accordion-panel { max-height: 200px; }
+    .accordion-panel-inner { padding-bottom: 20px; font-size: 13px; line-height: 1.85; color: var(--charcoal-light); font-weight: 300; }
+
+    .related-section { max-width: 1440px; margin: 0 auto; padding: 0 48px 120px; }
+    .related-title { font-family: var(--serif); font-size: 30px; font-weight: 300; color: var(--charcoal); margin-bottom: 32px; }
+    .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+
+    .product-card { background: var(--white); position: relative; overflow: hidden; cursor: pointer; }
+    .product-image { aspect-ratio: 3/4; overflow: hidden; position: relative; }
+    .product-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+    .product-card:hover .product-image img { transform: scale(1.04); }
+    .product-info { padding: 18px 20px 24px; border-top: 1px solid var(--linen); }
+    .product-category-tag { font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+    .product-name { font-family: var(--serif); font-size: 20px; font-weight: 400; color: var(--charcoal); margin-bottom: 4px; text-decoration: none; display: block; }
+    .product-price { font-family: var(--serif); font-size: 18px; color: var(--charcoal); }
+
+    .not-found { text-align: center; padding: 160px 24px 120px; }
+    .not-found p.headline { font-family: var(--serif); font-size: 30px; font-style: italic; color: var(--charcoal-xlight); margin-bottom: 24px; }
+
+    @media (max-width: 900px) {
+      .product-main { grid-template-columns: 1fr; padding: 68px 20px 0; gap: 0; }
+      .related-grid { grid-template-columns: repeat(2, 1fr); }
+      .related-section { padding: 0 20px 80px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="nav-inner">
+      <button class="nav-hamburger" data-nav-toggle aria-label="Open menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <nav class="nav-left">
+        <a href="index.html">Home</a>
+        <a href="collection.html">All Products</a>
+        <a href="collection.html?category=quilt">Quilts</a>
+        <a href="collection.html?category=cushion">Cushions</a>
+      </nav>
+
+      <a href="index.html" class="logo-link">
+        <svg width="28" height="36" viewBox="0 0 56 72" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom:2px;">
+          <path d="M28 28 C28 28 14 22 13 10 C12 2 19 0 24 4 C26 5.5 27 8 28 10 C29 8 30 5.5 32 4 C37 0 44 2 43 10 C42 22 28 28 28 28Z" fill="#3a3632"/>
+          <line x1="28" y1="28" x2="19" y2="4" stroke="#f7f4ef" stroke-width="0.7" opacity="0.5"/>
+          <line x1="28" y1="28" x2="28" y2="1" stroke="#f7f4ef" stroke-width="0.7" opacity="0.5"/>
+          <line x1="28" y1="28" x2="37" y2="4" stroke="#f7f4ef" stroke-width="0.7" opacity="0.5"/>
+          <line x1="28" y1="28" x2="28" y2="68" stroke="#3a3632" stroke-width="1.2"/>
+          <path d="M28 44 C22 40 10 42 8 50 C16 52 26 48 28 44Z" fill="#3a3632"/>
+          <path d="M28 44 C34 40 46 42 48 50 C40 52 30 48 28 44Z" fill="#3a3632"/>
+        </svg>
+        <span class="logo-wordmark">Ekaika</span>
+        <span class="logo-sub">Living</span>
+      </a>
+
+      <div class="nav-right">
+        <button class="nav-icon" data-search-trigger>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <span class="icon-label">Search</span>
+        </button>
+        <a href="wishlist.html" class="nav-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          <span class="icon-label">Saved (<span data-saved-count>0</span>)</span>
+        </a>
+        <a href="bag.html" class="nav-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="icon-label">Bag (<span data-bag-count>0</span>)</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <div id="app"></div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo-mark">
+          <svg width="20" height="26" viewBox="0 0 56 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M28 28 C28 28 14 22 13 10 C12 2 19 0 24 4 C26 5.5 27 8 28 10 C29 8 30 5.5 32 4 C37 0 44 2 43 10 C42 22 28 28 28 28Z" fill="rgba(247,244,239,0.8)"/>
+            <line x1="28" y1="28" x2="28" y2="68" stroke="rgba(247,244,239,0.8)" stroke-width="1.2"/>
+            <path d="M28 44 C22 40 10 42 8 50 C16 52 26 48 28 44Z" fill="rgba(247,244,239,0.8)"/>
+            <path d="M28 44 C34 40 46 42 48 50 C40 52 30 48 28 44Z" fill="rgba(247,244,239,0.8)"/>
+          </svg>
+        </div>
+        <p class="footer-logo-wordmark">Ekaika</p>
+        <p class="footer-logo-sub">Living</p>
+        <p class="footer-tagline">Hand block-printed home linens, made with intention in India.</p>
+        <div class="social-row">
+          <a href="https://instagram.com/ekaikaliving" class="social-link" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
+      <div>
+        <p class="footer-col-title">Shop</p>
+        <ul class="footer-links">
+          <li><a href="collection.html?category=bedsheet">Bedsheets</a></li>
+          <li><a href="collection.html?category=quilt">Quilted Bedcovers</a></li>
+          <li><a href="collection.html?category=cushion">Cushion Covers</a></li>
+          <li><a href="collection.html?sort=new">New Arrivals</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-col-title">About</p>
+        <ul class="footer-links">
+          <li><a href="about.html">Our Craft Story</a></li>
+          <li><a href="about.html#artisans">The Artisans</a></li>
+          <li><a href="about.html#sustainability">Sustainability</a></li>
+          <li><a href="about.html#journal">Journal</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-col-title">Help</p>
+        <ul class="footer-links">
+          <li><a href="sizing-guide.html">Sizing Guide</a></li>
+          <li><a href="care-instructions.html">Care Instructions</a></li>
+          <li><a href="shipping-returns.html">Shipping &amp; Returns</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="faq.html">FAQs</a></li>
+        </ul>
+      </div>
+    </div>
+    <div style="max-width:1440px;margin:0 auto;">
+      <hr style="border:none;border-top:1px solid rgba(247,244,239,0.08);margin:0 48px;" />
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 Ekaika Living. All rights reserved.</p>
+      <div class="footer-legal">
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms-of-use.html">Terms of Use</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/products.js"></script>
+  <script src="assets/store.js"></script>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const slug = params.get('slug');
+    const product = findProduct(slug);
+    const app = document.getElementById('app');
+
+    if (!product) {
+      app.innerHTML = `
+        <div class="not-found">
+          <p class="headline">We couldn't find that product.</p>
+          <a href="collection.html" class="btn-primary">Back to the Collection</a>
+        </div>`;
+    } else {
+      document.title = product.name + ' — Ekaika Living';
+      renderProduct(product);
+    }
+
+    function renderProduct(p) {
+      let activeImage = 0;
+      let activeSize = p.sizes[0] || '';
+      let qty = 1;
+
+      app.innerHTML = `
+        <div class="breadcrumb-row">
+          <div class="breadcrumb" style="max-width:1440px;margin:0 auto;padding:0 48px;">
+            <a href="index.html">Home</a><span>/</span>
+            <a href="collection.html?category=${p.category}">${p.categoryLabel}s</a><span>/</span>
+            <span>${p.name}</span>
+          </div>
+        </div>
+
+        <div class="product-main">
+          <div class="gallery">
+            <div class="gallery-main"><img id="gallery-main-img" src="${productImagePath(p, p.images[0])}" alt="${p.name}" /></div>
+            <div class="gallery-thumbs" id="gallery-thumbs"></div>
+          </div>
+
+          <div class="product-details">
+            <p class="detail-category">${p.categoryLabel}${p.isNew ? ' · New' : ''}</p>
+            <h1 class="detail-name">${p.name}</h1>
+            <p class="detail-variant">${p.variant}</p>
+            <p class="detail-price">${formatPrice(p.price)} <span style="font-size:11px;color:var(--charcoal-xlight);font-family:var(--sans);">incl. taxes · free shipping</span></p>
+            <p class="detail-desc">${p.description}</p>
+
+            ${p.sizes.length ? `
+            <div class="option-block">
+              <p class="option-label">Size</p>
+              <div class="size-pills" id="size-pills"></div>
+            </div>` : ''}
+
+            <div class="qty-row">
+              <p class="option-label" style="margin-bottom:0;">Quantity</p>
+              <div class="qty-stepper">
+                <button type="button" id="qty-minus" aria-label="Decrease quantity">&minus;</button>
+                <span id="qty-value">1</span>
+                <button type="button" id="qty-plus" aria-label="Increase quantity">+</button>
+              </div>
+            </div>
+
+            <div class="detail-actions">
+              <button type="button" class="btn-primary add-to-bag-main" id="add-to-bag-btn">Add to Bag</button>
+              <button type="button" class="wishlist-btn-inline" id="wishlist-btn" aria-label="Save to wishlist"></button>
+            </div>
+            <p class="added-confirm" id="added-confirm">Added to your bag — <a href="bag.html" style="color:var(--accent);">view bag</a></p>
+
+            <div class="accordion">
+              <div class="accordion-item">
+                <button class="accordion-trigger" data-accordion>Materials &amp; Craft <span class="accordion-icon">+</span></button>
+                <div class="accordion-panel"><div class="accordion-panel-inner">100% pure cotton, hand block-printed using natural and low-impact dyes by artisan families. Because each piece is printed by hand, slight variation between pieces is normal and part of the craft.</div></div>
+              </div>
+              <div class="accordion-item">
+                <button class="accordion-trigger" data-accordion>Shipping &amp; Returns <span class="accordion-icon">+</span></button>
+                <div class="accordion-panel"><div class="accordion-panel-inner">Free shipping across India, dispatched within 2–4 business days. Easy 7-day returns on unused pieces in original packaging. See our <a href="shipping-returns.html" style="color:var(--accent);">Shipping &amp; Returns</a> page for details.</div></div>
+              </div>
+              <div class="accordion-item">
+                <button class="accordion-trigger" data-accordion>Care Instructions <span class="accordion-icon">+</span></button>
+                <div class="accordion-panel"><div class="accordion-panel-inner">Machine wash cold with like colours, mild detergent, no bleach. Line dry in shade. See our <a href="care-instructions.html" style="color:var(--accent);">full care guide</a>.</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+
+      const thumbsEl = document.getElementById('gallery-thumbs');
+      p.images.slice(0, 6).forEach((img, i) => {
+        const t = document.createElement('div');
+        t.className = 'gallery-thumb' + (i === 0 ? ' active' : '');
+        t.innerHTML = `<img src="${productImagePath(p, img)}" alt="${p.name} view ${i + 1}" />`;
+        t.addEventListener('click', () => {
+          activeImage = i;
+          document.getElementById('gallery-main-img').src = productImagePath(p, img);
+          thumbsEl.querySelectorAll('.gallery-thumb').forEach(el => el.classList.remove('active'));
+          t.classList.add('active');
+        });
+        thumbsEl.appendChild(t);
+      });
+
+      if (p.sizes.length) {
+        const sizePills = document.getElementById('size-pills');
+        p.sizes.forEach((size, i) => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'size-pill' + (i === 0 ? ' active' : '');
+          btn.textContent = size;
+          btn.addEventListener('click', () => {
+            activeSize = size;
+            sizePills.querySelectorAll('.size-pill').forEach(el => el.classList.remove('active'));
+            btn.classList.add('active');
+          });
+          sizePills.appendChild(btn);
+        });
+      }
+
+      document.getElementById('qty-minus').addEventListener('click', () => {
+        qty = Math.max(1, qty - 1);
+        document.getElementById('qty-value').textContent = qty;
+      });
+      document.getElementById('qty-plus').addEventListener('click', () => {
+        qty = Math.min(10, qty + 1);
+        document.getElementById('qty-value').textContent = qty;
+      });
+
+      document.getElementById('add-to-bag-btn').addEventListener('click', () => {
+        addToCart(p.slug, activeSize, qty);
+        showToast(`Added "${p.name}" to your bag`);
+        const confirm = document.getElementById('added-confirm');
+        confirm.classList.add('visible');
+      });
+
+      const wishlistBtn = document.getElementById('wishlist-btn');
+      function paintWishlistBtn() {
+        wishlistBtn.innerHTML = heartSvg(isWishlisted(p.slug));
+      }
+      paintWishlistBtn();
+      wishlistBtn.addEventListener('click', () => {
+        const nowSaved = toggleWishlist(p.slug);
+        paintWishlistBtn();
+        showToast(nowSaved ? 'Saved to your wishlist' : 'Removed from wishlist');
+      });
+
+      document.querySelectorAll('[data-accordion]').forEach(trigger => {
+        trigger.addEventListener('click', () => {
+          trigger.closest('.accordion-item').classList.toggle('open');
+        });
+      });
+
+      renderRelated(p);
+    }
+
+    function renderRelated(p) {
+      const related = PRODUCTS.filter(x => x.category === p.category && x.slug !== p.slug).slice(0, 3);
+      if (!related.length) return;
+      const section = document.createElement('section');
+      section.className = 'related-section';
+      section.innerHTML = `
+        <h2 class="related-title">You may also <em style="font-style:italic;color:var(--accent);">like</em></h2>
+        <div class="related-grid">
+          ${related.map(r => `
+            <div class="product-card" data-slug="${r.slug}">
+              <div class="product-image"><img src="${productCoverImage(r)}" alt="${r.name}" /></div>
+              <div class="product-info">
+                <p class="product-category-tag">${r.categoryLabel}</p>
+                <a class="product-name" href="product.html?slug=${r.slug}">${r.name}</a>
+                <p class="product-price">${formatPrice(r.price)}</p>
+              </div>
+            </div>`).join('')}
+        </div>
+      `;
+      app.appendChild(section);
+      enhanceProductCards(section);
+    }
+  </script>
+</body>
+</html>

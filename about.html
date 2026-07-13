@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Story — Ekaika Living</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/base.css" />
+  <link rel="stylesheet" href="assets/shared.css" />
+  <style>
+    .story-hero { padding-top: 68px; background: var(--white); border-bottom: 1px solid var(--linen-dark); }
+    .story-hero-inner { max-width: 1000px; margin: 0 auto; padding: 56px 48px 64px; }
+    .story-section { border-bottom: 1px solid var(--linen-dark); padding: 72px 0; }
+    .story-section:last-child { border-bottom: none; }
+    .story-inner { max-width: 720px; margin: 0 auto; padding: 0 48px; }
+    .story-eyebrow { font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; }
+    @media (max-width: 700px) {
+      .story-hero-inner, .story-inner { padding-left: 20px; padding-right: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="nav-inner">
+      <button class="nav-hamburger" data-nav-toggle aria-label="Open menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <nav class="nav-left">
+        <a href="index.html">Home</a>
+        <a href="collection.html">All Products</a>
+        <a href="collection.html?category=quilt">Quilts</a>
+        <a href="collection.html?category=cushion">Cushions</a>
+      </nav>
+
+      <a href="index.html" class="logo-link">
+        <svg width="28" height="36" viewBox="0 0 56 72" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom:2px;">
+          <path d="M28 28 C28 28 14 22 13 10 C12 2 19 0 24 4 C26 5.5 27 8 28 10 C29 8 30 5.5 32 4 C37 0 44 2 43 10 C42 22 28 28 28 28Z" fill="#3a3632"/>
+          <line x1="28" y1="28" x2="28" y2="68" stroke="#3a3632" stroke-width="1.2"/>
+          <path d="M28 44 C22 40 10 42 8 50 C16 52 26 48 28 44Z" fill="#3a3632"/>
+          <path d="M28 44 C34 40 46 42 48 50 C40 52 30 48 28 44Z" fill="#3a3632"/>
+        </svg>
+        <span class="logo-wordmark">Ekaika</span>
+        <span class="logo-sub">Living</span>
+      </a>
+
+      <div class="nav-right">
+        <button class="nav-icon" data-search-trigger>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <span class="icon-label">Search</span>
+        </button>
+        <a href="wishlist.html" class="nav-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          <span class="icon-label">Saved (<span data-saved-count>0</span>)</span>
+        </a>
+        <a href="bag.html" class="nav-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="icon-label">Bag (<span data-bag-count>0</span>)</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <div class="story-hero">
+    <div class="story-hero-inner">
+      <div class="breadcrumb"><a href="index.html">Home</a><span>/</span><span>Our Story</span></div>
+      <h1 class="page-title">Printed by hand.<br/><em>Worn by time.</em></h1>
+      <p class="page-subtitle">The people, the process, and the philosophy behind every Ekaika piece.</p>
+    </div>
+  </div>
+
+  <section class="story-section">
+    <div class="story-inner prose">
+      <p class="story-eyebrow">The Craft</p>
+      <p>Block printing is not a technique. It is a conversation — between the printer, the block, the cloth, and the dye. Each stamp is a deliberate act; each repeat carries a breath of imperfection that no machine can replicate.</p>
+      <p>Every Ekaika piece begins as pure cotton cloth, washed and prepared to receive dye evenly. A hand-carved wooden block is dipped in colour and pressed into the fabric, stamp by stamp, until a pattern that started as a single motif becomes a field. Because it is done by hand and by eye, no two lengths of cloth are ever quite identical — and we think that's the point.</p>
+      <p>Colours come from natural and low-impact sources — indigo, pomegranate rind, iron-rust — mixed fresh in small batches. The cloth is then washed in running water and dried under open sky, which is what gives block-printed cotton its particular, lived-in softness.</p>
+    </div>
+  </section>
+
+  <section class="story-section" id="artisans">
+    <div class="story-inner prose">
+      <p class="story-eyebrow">The Artisans</p>
+      <h2 style="margin-top:0;">The Artisans</h2>
+      <p>We work with artisan families whose craft stretches back generations, printing in small workshops where the block table has often been passed down from parent to child. When you bring an Ekaika piece home, you carry a small part of that lineage with you.</p>
+      <p>We're building out this page with more of their stories, workshop by workshop — check back, or follow along on <a href="https://instagram.com/ekaikaliving" target="_blank" rel="noopener">Instagram</a> where we share the process as it happens.</p>
+    </div>
+  </section>
+
+  <section class="story-section" id="sustainability">
+    <div class="story-inner prose">
+      <p class="story-eyebrow">Sustainability</p>
+      <h2 style="margin-top:0;">Sustainability</h2>
+      <p>Slow cloth is, by nature, a slower way of making things. We work in pure cotton, favour natural and low-impact dyes over synthetic ones, and print to order rather than stockpiling — which means less waste at every step between block and bed.</p>
+      <p>This part of our story is still being written as we formalise our sourcing and impact reporting. We'd rather share real detail as it's verified than make claims ahead of it.</p>
+    </div>
+  </section>
+
+  <section class="story-section" id="journal">
+    <div class="story-inner prose">
+      <p class="story-eyebrow">Journal</p>
+      <h2 style="margin-top:0;">Journal</h2>
+      <p>Notes from the workshop, new collections, and the occasional styling idea — our journal is coming soon. In the meantime, the newsletter on our <a href="index.html#newsletter">homepage</a> is the fastest way to hear from us first.</p>
+    </div>
+  </section>
+
+  <section class="story-section" id="press" style="border-bottom:none;">
+    <div class="story-inner prose">
+      <p class="story-eyebrow">Press</p>
+      <h2 style="margin-top:0;">Press</h2>
+      <p>For press or partnership enquiries, reach us directly at <a href="mailto:ekaikaliving@gmail.com">ekaikaliving@gmail.com</a>. We'll list coverage here as it's published.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo-mark">
+          <svg width="20" height="26" viewBox="0 0 56 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M28 28 C28 28 14 22 13 10 C12 2 19 0 24 4 C26 5.5 27 8 28 10 C29 8 30 5.5 32 4 C37 0 44 2 43 10 C42 22 28 28 28 28Z" fill="rgba(247,244,239,0.8)"/>
+            <line x1="28" y1="28" x2="28" y2="68" stroke="rgba(247,244,239,0.8)" stroke-width="1.2"/>
+            <path d="M28 44 C22 40 10 42 8 50 C16 52 26 48 28 44Z" fill="rgba(247,244,239,0.8)"/>
+            <path d="M28 44 C34 40 46 42 48 50 C40 52 30 48 28 44Z" fill="rgba(247,244,239,0.8)"/>
+          </svg>
+        </div>
+        <p class="footer-logo-wordmark">Ekaika</p>
+        <p class="footer-logo-sub">Living</p>
+        <p class="footer-tagline">Hand block-printed home linens, made with intention in India.</p>
+        <div class="social-row">
+          <a href="https://instagram.com/ekaikaliving" class="social-link" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
+      <div>
+        <p class="footer-col-title">Shop</p>
+        <ul class="footer-links">
+          <li><a href="collection.html?category=bedsheet">Bedsheets</a></li>
+          <li><a href="collection.html?category=quilt">Quilted Bedcovers</a></li>
+          <li><a href="collection.html?category=cushion">Cushion Covers</a></li>
+          <li><a href="collection.html?sort=new">New Arrivals</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-col-title">About</p>
+        <ul class="footer-links">
+          <li><a href="about.html">Our Craft Story</a></li>
+          <li><a href="about.html#artisans">The Artisans</a></li>
+          <li><a href="about.html#sustainability">Sustainability</a></li>
+          <li><a href="about.html#journal">Journal</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-col-title">Help</p>
+        <ul class="footer-links">
+          <li><a href="sizing-guide.html">Sizing Guide</a></li>
+          <li><a href="care-instructions.html">Care Instructions</a></li>
+          <li><a href="shipping-returns.html">Shipping &amp; Returns</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="faq.html">FAQs</a></li>
+        </ul>
+      </div>
+    </div>
+    <div style="max-width:1440px;margin:0 auto;">
+      <hr style="border:none;border-top:1px solid rgba(247,244,239,0.08);margin:0 48px;" />
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 Ekaika Living. All rights reserved.</p>
+      <div class="footer-legal">
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms-of-use.html">Terms of Use</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/products.js"></script>
+  <script src="assets/store.js"></script>
+</body>
+</html>

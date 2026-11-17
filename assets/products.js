@@ -12,7 +12,7 @@ const PRODUCTS = [
     price: 5200,
     isNew: false,
     folder: 'bs-Ivory gold Noor Buta',
-    images: ['Pic1.png', 'Pic2.png', 'Pic3.png', 'Pic4.png', 'Pic5.png', 'Pic6.png', 'Pic6a.png', 'Pic7.png', 'Pic8.png'],
+    images: ['Pic1.jpg', 'Pic2.jpg', 'Pic3.jpg', 'Pic4.jpg', 'Pic5.jpg', 'Pic6.jpg', 'Pic6a.jpg', 'Pic7.jpg', 'Pic8.jpg'],
     sizes: ['King'],
     description: 'A refined floral buta scattered across ivory percale-weave cotton, finished in warm gold. Block-printed by hand and woven with a soft-touch percale finish that turns crisper with every wash. Includes two pillow covers.'
   },
@@ -25,7 +25,7 @@ const PRODUCTS = [
     price: 4800,
     isNew: false,
     folder: 'bs-PalepinkblockPrint',
-    images: ['Pic1.png', 'Pic2.png', 'Pic3.png', 'Pic4.png', 'Pic5.png', 'Pic6.png', 'Pic7.png', 'Pic8.png', 'Pic9.png', 'Pic10.png', 'Pic11.png', 'Pic12.png'],
+    images: ['Pic1.jpg', 'Pic2.jpg', 'Pic3.jpg', 'Pic4.jpg', 'Pic5.jpg', 'Pic6.jpg', 'Pic7.jpg', 'Pic8.jpg', 'Pic9.jpg', 'Pic10.jpg', 'Pic11.jpg', 'Pic12.jpg'],
     sizes: ['King', 'Queen'],
     description: 'A delicate lattice pattern in dusty rose, block-printed on 300-thread-count pure cotton. Includes two pillow covers. Each run has subtle variation — the quiet signature of the hand.'
   },
@@ -38,7 +38,7 @@ const PRODUCTS = [
     price: 5500,
     isNew: true,
     folder: 'bs-Multicolor Nargis Buta',
-    images: ['pic1.png', 'pic2.png', 'pic3.png', 'pic4.png', 'pic5.png', 'pic6.png', 'pic7.png'],
+    images: ['pic1.jpg', 'pic2.jpg', 'pic3.jpg', 'pic4.jpg', 'pic5.jpg', 'pic6.jpg', 'pic7.jpg'],
     sizes: ['King'],
     description: 'A joyful multicolor nargis buta in blue, rust and ivory, hand block-printed across pure cotton. A statement piece for a room that wants a little more colour. Includes two pillow covers.'
   },
@@ -51,7 +51,7 @@ const PRODUCTS = [
     price: 4800,
     isNew: false,
     folder: 'bs-Ivory Chinaar Buta -Percale weave',
-    images: ['Pic1.png', 'Pic2.png', 'Pic3.png', 'Pic4.png', 'Pic5.png', 'Pic6.png', 'Pic7.png', 'Pic8.png'],
+    images: ['Pic1.jpg', 'Pic2.jpg', 'Pic3.jpg', 'Pic4.jpg', 'Pic5.jpg', 'Pic6.jpg', 'Pic7.jpg', 'Pic8.jpg'],
     sizes: ['King'],
     description: 'Inspired by the chinaar leaf, this ivory percale bedsheet is block-printed in green and rust for a quiet, botanical mood. Includes two pillow covers.'
   },
@@ -64,7 +64,7 @@ const PRODUCTS = [
     price: 4600,
     isNew: false,
     folder: 'bs-White-Maroon-jaal',
-    images: ['pic1.png', 'pic2.png', 'pic3.png', 'pic3a.png', 'pic4.png', 'pic5.png', 'pic6.png', 'pic7.png'],
+    images: ['pic1.jpg', 'pic2.jpg', 'pic3.jpg', 'pic3a.jpg', 'pic4.jpg', 'pic5.jpg', 'pic6.jpg', 'pic7.jpg'],
     sizes: ['King', 'Queen'],
     description: 'A classic paisley jaal in deep maroon on white cotton — timeless, warm and built for everyday use. Includes two pillow covers.'
   },
@@ -77,7 +77,7 @@ const PRODUCTS = [
     price: 8400,
     isNew: true,
     folder: 'bs-Quited reversible',
-    images: ['pic1.png', 'pic2.png', 'pic2a.png', 'pic3.png', 'pic4.png', 'pic5.png', 'pic6.png', 'pic7.png', 'pic8.png'],
+    images: ['pic1.jpg', 'pic2.jpg', 'pic2a.jpg', 'pic3.jpg', 'pic4.jpg', 'pic5.jpg', 'pic6.jpg', 'pic7.jpg', 'pic8.jpg'],
     sizes: ['Double', 'Queen'],
     description: 'A reversible kantha-style quilted bedcover in teal, pink and ivory. Hand-quilted with running stitches over layered cotton, for a bedcover that gets softer with age.'
   },
@@ -90,7 +90,7 @@ const PRODUCTS = [
     price: 1600,
     isNew: false,
     folder: 'cc-mintMagentaButiBel',
-    images: ['Pic-1.png', 'Pic-2.png', 'Pic-3.png', 'Pic-4.png', 'Pic-5.png', 'Pic-6.png', 'Pic-7.png', 'Pic-8.png'],
+    images: ['Pic-1.jpg', 'Pic-2.jpg', 'Pic-3.jpg', 'Pic-4.jpg', 'Pic-5.jpg', 'Pic-6.jpg', 'Pic-7.jpg', 'Pic-8.jpg'],
     sizes: [],
     description: 'A dainty buti bel vine in mint and magenta, block-printed on pure cotton with a concealed zip closure. Sold as a set of two.'
   },
@@ -103,7 +103,7 @@ const PRODUCTS = [
     price: 1600,
     isNew: true,
     folder: 'cc-cyan-pinkSmallFlowers',
-    images: ['Pic1.png', 'Pic2.png', 'Pic3.png', 'Pic4.png', 'Pic5.png', 'Pic6.png'],
+    images: ['Pic1.jpg', 'Pic2.jpg', 'Pic3.jpg', 'Pic4.jpg', 'Pic5.jpg', 'Pic6.jpg'],
     sizes: [],
     description: 'Cyan and pink nargis blossoms scattered across natural cotton, block-printed by hand. Sold as a set of two with concealed zip closure.'
   },
@@ -116,7 +116,7 @@ const PRODUCTS = [
     price: 950,
     isNew: false,
     folder: 'cc-ivory-rose-print',
-    images: ['Pic-1.png', 'Pic-2.png', 'Pic-2a.png', 'Pic-3.png', 'Pic-4.png', 'Pic-5.png', 'Pic-6.png'],
+    images: ['Pic-1.jpg', 'Pic-2.jpg', 'Pic-2a.jpg', 'Pic-3.jpg', 'Pic-4.jpg', 'Pic-5.jpg', 'Pic-6.jpg'],
     sizes: [],
     description: 'A single rose bouquet motif in dusty rose on ivory cotton — soft, romantic and easy to layer with other prints. Sold as a single cover with concealed zip closure.'
   },
@@ -129,7 +129,7 @@ const PRODUCTS = [
     price: 950,
     isNew: true,
     folder: 'cc-cyanMagentaJaal',
-    images: ['Pic1.png', 'Pic1_bench.png', 'Pic2.png', 'Pic3.png', 'Pic4.png', 'Pic5.png', 'Pic6.png'],
+    images: ['Pic1.jpg', 'Pic1_bench.jpg', 'Pic2.jpg', 'Pic3.jpg', 'Pic4.jpg', 'Pic5.jpg', 'Pic6.jpg'],
     sizes: [],
     description: 'A teal and magenta hibiscus jaal on a forest-green ground, block-printed by hand. Sold as a single cover with concealed zip closure.'
   },
@@ -142,7 +142,7 @@ const PRODUCTS = [
     price: 1600,
     isNew: false,
     folder: 'cc-maroonGreyButterfly',
-    images: ['Pic1.png', 'Pic2.png', 'Pic3.png', 'Pic4.png', 'Pic5.png', 'Pic6.png'],
+    images: ['Pic1.jpg', 'Pic2.jpg', 'Pic3.jpg', 'Pic4.jpg', 'Pic5.jpg', 'Pic6.jpg'],
     sizes: [],
     description: 'Maroon butterflies in flight across ivory cotton, hand block-printed with a soft, storybook charm. Sold as a set of two.'
   },
@@ -155,7 +155,7 @@ const PRODUCTS = [
     price: 950,
     isNew: false,
     folder: 'cc-maroonStripes',
-    images: ['Pic-1.png', 'Pic-2.png', 'Pic-3.png', 'Pic-4.png', 'Pic-5.png', 'Pic-5a.png', 'Pic-6.png'],
+    images: ['Pic-1.jpg', 'Pic-2.jpg', 'Pic-3.jpg', 'Pic-4.jpg', 'Pic-5.jpg', 'Pic-5a.jpg', 'Pic-6.jpg'],
     sizes: [],
     description: 'A rose and white stripe, finished with fine kantha quilting stitches for texture and warmth. Sold as a single cover with concealed zip closure.'
   }
